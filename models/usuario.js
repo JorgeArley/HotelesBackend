@@ -3,47 +3,41 @@ const { Schema, model } = require('mongoose');
 const UsuarioSchema = Schema({
   nombre: {
     type: String,
-    require: true
+    required: true
   },
   apellidos: {
     type: String,
-    require: true
+    required: true
   },
   password: {
     type: String,
-    require: true
+    required: true
   },
   fecha_nacimiento: {
     type: String,
-    require: true
+    required: true
   },
   genero: {
     type: String,
-    require: true
+    required: true
   },
   tipo_documento: {
     type: String,
-    require: true
+    required: true
   },
   doc_user: {
     type: String,
-    require: true
+    required: true
   },
   email: {
     type: String,
-    require: true,
+    required: true,
     unique: true
   },
   telefono: {
     type: String,
-    require: true
-  },
-  contacto_emergencia: {
-    type: String,
-  },
-  tel_contacto: {
-    type: String,
-  },
+    required: true
+  }
 });
 
 UsuarioSchema.method('toJSON', function () {

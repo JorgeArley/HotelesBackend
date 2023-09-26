@@ -19,6 +19,10 @@ dbConnection();
 
 //Rutas
 app.use('/api/usuarios', require('./routes/usuarios'));
+app.use('/api/hoteles', require('./routes/hoteles'));
+app.use('/api/habitaciones', require('./routes/habitaciones'));
+app.use('/api/reservas', require('./routes/reservas'));
+app.use('/api/todo', require('./routes/busquedas'));
 app.use('/api/login', require('./routes/auth'));
 
 
