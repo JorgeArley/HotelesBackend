@@ -7,13 +7,15 @@ const { check } = require('express-validator');
 
 const { validarCampos } = require('../middlewares/validar-campos');
 const { validarJwt } = require('../middlewares/validar-jwt');
-const { getHabitaciones, postHabitacion, putHabitacion } = require('../controllers/habitaciones.controller');
+const { getHabitaciones, postHabitacion, putHabitacion, getHabitacionByID, getHabitacionByHotel } = require('../controllers/habitaciones.controller');
 
 
 
 const router = Router();
 
 router.get('/', getHabitaciones);
+router.get('/hotel/:idHotel', getHabitacionByHotel);
+router.get('/:id',validarJwt, getHabitacionByID);
 router.post('/',
   [
     validarJwt,

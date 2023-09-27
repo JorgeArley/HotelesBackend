@@ -3,12 +3,15 @@
  */
 
 const { Router } = require('express');
-const { login } = require('../controllers/auth.controller');
+const { login, renewToken } = require('../controllers/auth.controller');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middlewares/validar-campos');
+const { validarJwt } = require('../middlewares/validar-jwt');
 
 
 const router = Router();
+
+router.get('/renew', validarJwt, renewToken);
 
 router.post('/',
     [

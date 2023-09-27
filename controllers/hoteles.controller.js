@@ -13,6 +13,34 @@ const getHoteles = async (req, res = response) => {
   });
 }
 
+const getHotelesByID = async (req, res = response) => {
+
+  const hid = req.params.id;
+
+  try {
+    const HotelDB = await Hotel.findById(hid)
+        .populate('usuario', 'nombre');
+
+    if (!HotelDB) {
+      return res.status(404).json({
+        ok: false,
+        msg: 'No existe ese Hotel'
+      });
+    }
+
+    res.json({
+      ok: true,
+      hotel: HotelDB
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      ok: false,
+      msg: 'Error inesperado..en el getpor id de hotel'
+    });
+  }
+}
+
 const postHotel = async (req, res = response) => {
 
   const uid = req.uid;
@@ -41,41 +69,32 @@ const postHotel = async (req, res = response) => {
 
 const putHotel = async (req, res = response) => {
 
-  const uid = req.params.id;
+  const hid = req.params.id;
+  const uid = req.uid;
 
 
   try {
-    //validar token 
 
-    // const HotelDB = await Hotel.findById(uid);
+    const HotelDB = await Hotel.findById(hid);
 
-    // if (!HotelDB) {
-    //   return res.status(404).json({
-    //     ok: false,
-    //     msg: 'No existe ese Hotel'
-    //   });
-    // }
+    if (!HotelDB) {
+      return res.status(404).json({
+        ok: false,
+        msg: 'No existe ese Hotel'
+      });
+    }
 
-    // //actualizaciones
+    const newValuesHotel = {
+      ...req.body,
+      usuario: uid
+    }
 
-    // const { password, email, ...campos } = req.body;
-    // if (HotelDB.email !== email) {
-    //   const existEmail = await Hotel.findOne({ email });
-    //   if (existEmail) {
-    //     return res.status(400).json({
-    //       ok: false,
-    //       msg: 'Ya existe un Hotel con ese email'
-    //     });
-    //   }
-    // }
-
-    // campos.email = email;
-    // const HotelActualizado = await Hotel.findByIdAndUpdate(uid, campos, { new: true });
+    const HotelActualizado = await Hotel.findByIdAndUpdate(hid, newValuesHotel, { new: true });
 
 
     res.json({
       ok: true,
-      uid
+      hotel: HotelActualizado
     });
   } catch (error) {
     console.log(error);
@@ -89,6 +108,7 @@ const putHotel = async (req, res = response) => {
 
 module.exports = {
   getHoteles,
+  getHotelesByID,
   postHotel,
   putHotel
 }
