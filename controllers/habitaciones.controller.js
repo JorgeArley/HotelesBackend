@@ -61,14 +61,7 @@ const getHabitacionByHotel = async (req, res = response) => {
   try{
 
     const habitacion = await Habitacion.find(query)
-        // .populate('usuario', 'nombre')
-        // .populate({ 
-        //   path: 'habitacion',
-        //   populate: {
-        //     path: 'hotel'
-        //   } 
-        // });
-    console.log(habitacion)
+
     if (!habitacion) {
       return res.status(404).json({
         ok: false,
