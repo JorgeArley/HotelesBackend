@@ -3,3 +3,5 @@
 Ejecutar
 
 ```npm install```
+
+deploy to heroku
