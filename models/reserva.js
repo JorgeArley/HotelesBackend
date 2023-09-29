@@ -25,6 +25,10 @@ const ReservaSchema = Schema({
     type: String,
     required: true
   },
+  residents: {
+    type: Array,
+    required: true
+  },
   usuario: {
     required: true,
     type: Schema.Types.ObjectId,
@@ -44,16 +48,3 @@ ReservaSchema.method('toJSON', function () {
 })
 
 module.exports = model('Reserva', ReservaSchema);
-
-// El sistema me deberá dar la opción de buscar por:
-// fecha de entrada al alojamiento, fecha de salida del
-// alojamiento, cantidad de personas que se alojarán y
-// ciudad de destino.
-
-// Nombres completos
-// ● Teléfono de contacto
-
-// La reserva deberá asociar un contacto de emergencia, el
-// cual debe contener:
-// ● Nombres completos
-// ● Teléfono de contacto

@@ -44,7 +44,7 @@ const postUsuario = async (req, res = response) => {
     console.log(error)
     res.status(500).json({
       ok: false,
-      msg: 'Error inesperado..en el post'
+      msg: 'Error inesperado..en el post para crear usuario'
     });
   }
 }

@@ -37,6 +37,10 @@ const UsuarioSchema = Schema({
   telefono: {
     type: String,
     required: true
+  },
+  type: {
+    type: String,
+    required: true
   }
 });
 

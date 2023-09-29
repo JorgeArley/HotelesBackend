@@ -24,6 +24,7 @@ router.post('/',
     check('doc_user', 'documento es requerido').not().isEmpty(),
     check('email', 'email es requerido').isEmail(),
     check('telefono', 'telefono es requerido').not().isEmpty(),
+    check('type', 'el role es requerido').not().isEmpty(),
     validarCampos,
   ],
   postUsuario

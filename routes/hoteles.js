@@ -23,6 +23,7 @@ router.post('/',
     check('cantidad_habitaciones', 'cantidad_habitaciones es requerido').not().isEmpty(),
     check('numero_estrellas', 'numero_estrellas es requerido').not().isEmpty(),
     check('pais', 'pais es requerido').not().isEmpty(),
+    check('enable', 'estado del hotel es requerido').not().isEmpty(),
     validarCampos
   ],
   postHotel
@@ -35,7 +36,8 @@ router.put('/:id',
     check('imagen', 'imagen es requerido').not().isEmpty(),
     check('cantidad_habitaciones', 'cantidad_habitaciones es requerido').not().isEmpty(),
     check('numero_estrellas', 'numero_estrellas es requerido').not().isEmpty(),
-    check('pais', 'pais es requerido').not().isEmpty(),
+    check('pais', 'estado del hotel es requerido').not().isEmpty(),
+    check('enable', 'pais es requerido').not().isEmpty(),
     validarCampos
   ],
   putHotel

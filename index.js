@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
-
+const nodemailer = require('nodemailer');
 const { dbConnection } = require('./database/config');
 
 //crear servidor de express
@@ -24,6 +24,7 @@ app.use('/api/habitaciones', require('./routes/habitaciones'));
 app.use('/api/reservas', require('./routes/reservas'));
 app.use('/api/todo', require('./routes/busquedas'));
 app.use('/api/login', require('./routes/auth'));
+app.use('/api/sendemail', require('./routes/email'));
 
 
 app.listen(process.env.PORT, () => {

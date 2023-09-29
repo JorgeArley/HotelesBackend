@@ -25,6 +25,10 @@ const HotelSchema = Schema({
     type: String,
     required: true
   },
+  enable: {
+    type: Boolean,
+    required: true
+  },
   usuario: {
     required: true,
     type: Schema.Types.ObjectId,

@@ -35,7 +35,8 @@ const login = async (req, res = response) => {
     res.json({
       ok: true,
       token,
-      email
+      email,
+      type: usuarioDB.type
     });
 
   } catch (error) {
@@ -49,18 +50,28 @@ const login = async (req, res = response) => {
 
 const renewToken = async(req, res = response) => {
 
-  const uid = req.uid;
+    const uid = req.uid;
 
-  // Generar el TOKEN - JWT
-  const token = await generarJwt( uid );
-  
-  const {email} = await Usuario.findOne({_id: uid});
+    // Generar el TOKEN - JWT
+    const token = await generarJwt( uid );
 
-  res.json({
-      ok: true,
-      email,
-      token,
-  });
+    try{
+      
+      const {email} = await Usuario.findOne({_id: uid});
+
+      res.json({
+          ok: true,
+          email,
+          token,
+      });
+
+   
+    } catch (error) {
+    res.status(500).json({
+      ok: false,
+      msg: 'Error inesperado..en el post de login'
+    });
+  }
 
 }
 
